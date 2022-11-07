@@ -22,7 +22,7 @@ export default function ({
   return (
     <Layout>
       <TopNav
-        middleContent="Home"
+        middleContent="ListUnit"
         rightContent={
           <Ionicons
             name={isDarkmode ? "sunny" : "moon"}
@@ -43,9 +43,13 @@ export default function ({
           flex: 1,
           alignItems: "center",
           justifyContent: "center",
+          backgroundColor:'white',
         }}
       >
-        <Section style={{ marginTop: 20 }}>
+        
+
+
+        {/*<Section style={{ marginTop: 20 }}>
           <SectionContent>
             <Text fontWeight="bold" style={{ textAlign: "center" }}>
               These UI components provided by Rapi UI
@@ -82,7 +86,7 @@ export default function ({
               }}
             />
           </SectionContent>
-        </Section>
+        </Section>*/}
       </View>
     </Layout>
   );
