@@ -22,7 +22,7 @@ export default function ({
   return (
     <Layout>
       <TopNav
-        middleContent="ListUnit"
+        middleContent="ListUnit230"
         rightContent={
           <Ionicons
             name={isDarkmode ? "sunny" : "moon"}
@@ -46,7 +46,7 @@ export default function ({
           backgroundColor:'white',
         }}
       >
-        
+
 
 
         {/*<Section style={{ marginTop: 20 }}>
