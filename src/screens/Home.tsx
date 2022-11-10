@@ -1,5 +1,5 @@
-import React from "react";
-import { View, Linking } from "react-native";
+import React, { useState } from "react";
+import { View, Linking, TouchableWithoutFeedback } from "react-native";
 import { MainTabsParamList } from "../types/navigation";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { supabase } from "../initSupabase";
@@ -12,6 +12,7 @@ import {
   SectionContent,
   useTheme,
   themeColor,
+  SectionImage,
 } from "react-native-rapi-ui";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -19,6 +20,15 @@ export default function ({
   navigation,
 }: NativeStackScreenProps<MainTabsParamList, "Home">) {
   const { isDarkmode, setTheme } = useTheme();
+  const [count, setCount] = useState(0);
+
+  const onPress = () => {
+    setCount(count + 1);
+    console.log(count)
+  };
+
+
+
   return (
     <Layout>
       <TopNav
@@ -42,48 +52,52 @@ export default function ({
         style={{
           flex: 1,
           alignItems: "center",
-          justifyContent: "center",
+          
+          
         }}
       >
-        <Section style={{ marginTop: 20 }}>
+        <Section style={{ marginTop: 20,width: '90%' }}>
           <SectionContent>
             <Text fontWeight="bold" style={{ textAlign: "center" }}>
-              These UI components provided by Rapi UI
+              English Learning App
             </Text>
-            <Button
-              style={{ marginTop: 10 }}
-              text="Rapi UI Documentation"
-              status="info"
-              onPress={() => Linking.openURL("https://rapi-ui.kikiding.space/")}
-            />
-            <Button
-              text="Go to second screen"
-              onPress={() => {
-               
-              }}
-              style={{
-                marginTop: 10,
-              }}
-            />
-            <Button
-              status="danger"
-              text="Logout"
-              onPress={async () => {
-                const { error } = await supabase.auth.signOut();
-                if (!error) {
-                  alert("Signed out!");
-                }
-                if (error) {
-                  alert(error.message);
-                }
-              }}
-              style={{
-                marginTop: 10,
-              }}
-            />
           </SectionContent>
+          <SectionImage source={require('../../assets/images/undraw_Learning_re_32qv.png')} />
         </Section>
+
+        <View style={{ marginTop: 20,width: '90%' }} >
+           <Text fontWeight="bold" >
+              Categories
+            </Text>
+        </View>
+        <View style={{display: 'flex', flexDirection:"row"}}>
+           <TouchableWithoutFeedback onPress={() => navigation.navigate("Units")}>
+            <Section style={{ marginTop: 20,marginRight: 10, minWidth:"40%" }}>
+          <SectionContent>
+            <Text fontWeight="bold" style={{ textAlign: "center" }}>
+              List Units
+            </Text>
+          </SectionContent>
+          <SectionImage source={require('../../assets/images/undraw_Learning_re_32qv.png')} />
+            </Section>
+           </TouchableWithoutFeedback>
+          
+         <TouchableWithoutFeedback onPress={onPress}>
+          <Section style={{ marginTop: 20, minWidth:"40%", marginLeft: 10 }}>
+          <SectionContent>
+            <Text fontWeight="bold" style={{ textAlign: "center" }}>
+              Something else
+            </Text>
+          </SectionContent>
+          <SectionImage source={require('../../assets/images/undraw_Learning_re_32qv.png')} />
+        </Section>
+
+         </TouchableWithoutFeedback>
+        
+        </View>
       </View>
+      
+      
     </Layout>
   );
 }

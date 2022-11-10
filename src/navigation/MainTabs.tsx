@@ -9,6 +9,7 @@ import Home from "../screens/Home";
 import About from "../screens/About";
 import Profile from "../screens/Profile";
 import { MainTabsParamList } from "../types/navigation";
+import Units from "../screens/Units";
 
 const Tabs = createBottomTabNavigator<MainTabsParamList>();
 const MainTabs = () => {
@@ -54,6 +55,18 @@ const MainTabs = () => {
         options={{
           tabBarLabel: ({ focused }) => (
             <TabBarText focused={focused} title="About" />
+          ),
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} icon={"ios-information-circle"} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="Units"
+        component={Units}
+        options={{
+          tabBarLabel: ({ focused }) => (
+            <TabBarText focused={focused} title="Units" />
           ),
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} icon={"ios-information-circle"} />
