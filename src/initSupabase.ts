@@ -4,8 +4,8 @@ import { createClient } from "@supabase/supabase-js";
 
 // Better put your these secret keys in .env file
 export const supabase = createClient(
-  "https://gkxxcfmtunmphvgaqvns.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdreHhjZm10dW5tcGh2Z2Fxdm5zIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njc3NTQ1NzIsImV4cCI6MTk4MzMzMDU3Mn0.QSCN9-HHaoWNRA8vnQ5GvH2oBGaJxWAU4r9AxeAnf64",
+  "https://xzflfhtscparrsbvtbkq.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh6ZmxmaHRzY3BhcnJzYnZ0YmtxIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njc5MTUwMjQsImV4cCI6MTk4MzQ5MTAyNH0.zWRIUgvYMqxMlkOrleWTAJiLSQn-wm049JRIxyq-qSo",
   {
     auth: {
       storage: AsyncStorage,

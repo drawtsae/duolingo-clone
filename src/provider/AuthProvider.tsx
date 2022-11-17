@@ -11,12 +11,10 @@ const AuthContext = createContext<Partial<ContextProps>>({});
 interface Props {
 	children: React.ReactNode;
 }
-
 const AuthProvider = (props: Props) => {
 	// user null = loading
 	const [user, setUser] = useState<null | boolean>(null);
 	const [session, setSession] = useState<Session | null>(null);
-
 	useEffect(   () => {
 		const getSessions =  async () => {
 		const { data, error } = await supabase.auth.getSession()
