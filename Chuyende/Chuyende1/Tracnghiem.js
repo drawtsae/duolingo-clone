@@ -1,13 +1,36 @@
 import React, { useState, useContext, useEffect }  from 'react'
-import { View, Text,  TouchableOpacity, Modal, Animated} from 'react-native'
+import { View, Text,  TouchableOpacity, Modal, Animated , ScrollView} from 'react-native'
 import { COLORS} from '../Constants/theme'
 import data from './Data/QuestionData';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+// import Supabase and data user
+import { supabase } from '../../src/initSupabase';
+import { AuthContext} from '../../src/provider/AuthProvider';
 var ABRRAY =new Array();
 var BRRAY = new Array();
+const UpdateScore = async (userId, value)=> {
+    const { data, error } = await supabase
+    .from('ScoreOfUser')
+    .update({ Scoremajor1 : value })
+    .eq('UserID', userId)
+}
 const Tracnghiemchuyende1 = ({navigation}) => {
     //Show optioned
+    // Update Score
+    const [userData, setUserData] = useState({})
+    const auth = useContext(AuthContext);
+    //useEffect
+    useEffect(() => {
+        getdata(auth.session?.user.id)
+        .then((data) => setUserData(data));
+    },);
+    //Update
+    const update = async() =>{
+        //update vocabulary
+        if (userData?.Scoremajor1 == 0){
+            await UpdateScore(auth.session?.user.id, score);
+        };
+    }
     var ARRAY = new Array();
     const allQuestions = data;
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
@@ -32,12 +55,53 @@ const Tracnghiemchuyende1 = ({navigation}) => {
     }
     BRRAY[index] = answer1;
     //Gía trị đáp án đúng
+    //Show đáp án đã chon
+    const Showdapan =()=>{
+        let A=0;
+        console.log(BRRAY)
+        return (
+            allQuestions.map((a) =>(
+                <View style={{width:'100%', margin:10}}>
+                     <Text>{a.question}</Text>
+                     <View>
+                    {
+                    a.options.map(option=>(
+                        <View style={{flexDirection:'row', marginTop:20, alignItems:"center"}}>
+                        <TouchableOpacity 
+                        onPress={()=> {}}
+                        disabled={isOptionsDisabled}
+                        key={option}
+                        style={{
+                            borderWidth: 1.5, 
+                            backgroundColor: option == BRRAY[A] ? (option == ARRAY[A] ?  COLORS.success : COLORS.error   ) : option == ARRAY[A] ? COLORS.success : 'white',
+                            height: 25, width:25, borderRadius: 20,
+                            flexDirection: 'row',
+                            alignItems: 'center', justifyContent: 'space-between',
+                            marginLeft:10,
+                        }}
+                        >
+                        </TouchableOpacity>
+                        <Text style={{fontSize: 20, color: 'black', marginLeft:25}} >{option} 
+                            <Text style={{textDecorationLine:'underline'}}>
+                                {a?.options1} {ARRAY[A]} 
+                            </Text>
+                        </Text>
+                        
+                        </View>
+                    ))
+                    }
+                    <Text>{A++}</Text>
+            </View>
+                </View>
+            ))
+        )
+    }
     const handleNext = () => {
         if(currentQuestionIndex== allQuestions.length-1){
             // Last Question
             // Show Score Modal
             setShowScoreModal(true)
-            let A = 0;
+            let A = 1;
             for (let index = 0; index < allQuestions.length; index++) {
                 if(BRRAY[index] == ARRAY[index])
                 {
@@ -120,7 +184,11 @@ const Tracnghiemchuyende1 = ({navigation}) => {
                         }}
                         >
                         </TouchableOpacity>
-                        <Text style={{fontSize: 20, color: 'black', marginLeft:25}}>{option} </Text>
+                        <Text style={{fontSize: 20, color: 'black', marginLeft:25}} >{option} 
+                            <Text style={{textDecorationLine:'underline'}}>
+                                {allQuestions[currentQuestionIndex]?.options1}
+                            </Text>
+                        </Text>
                         </View>
                     ))
                 }
@@ -218,13 +286,18 @@ const Tracnghiemchuyende1 = ({navigation}) => {
                        alignItems: 'center',
                        justifyContent: 'center'
                    }}>
-                       <View style={{
+                       
+                        <ScrollView style={{
                            backgroundColor: COLORS.white,
                            width: '90%',
+                           height: '80%',
                            borderRadius: 20,
                            padding: 20,
-                           alignItems: 'center'
+                           marginTop: 20,
+                           
                        }}>
+                        <View style={{flex:1, alignItems: 'center',}}>
+                            <Showdapan></Showdapan>
                            <Text style={{fontSize: 30, fontWeight: 'bold'}}>{ score> (allQuestions.length/2) ? 'Congratulations!' : 'Oops!' }</Text>
 
                            <View style={{
@@ -252,11 +325,10 @@ const Tracnghiemchuyende1 = ({navigation}) => {
                                    textAlign: 'center', color: COLORS.white, fontSize: 20
                                }}>Retry Quiz</Text>
                            </TouchableOpacity>
-
-                       </View>
-
+                           </View>
+                           </ScrollView>
                        <TouchableOpacity
-                           onPress={()=> {navigation.navigate("Profile")}}
+                           onPress={()=> {navigation.navigate("Profile"), update ()}}
                            style={{
                                 marginTop:'10%',
                                backgroundColor: COLORS.accent,

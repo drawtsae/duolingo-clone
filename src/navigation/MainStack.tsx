@@ -7,7 +7,9 @@ import Account from "../screens/Menu/Account";
 // Rank
 import ScreenRank from "../screens/ScreenRank";
 import RankScreen from "../screens/Rank";
+import RankScreenmajor1 from "../screens/Rankmajor";
 //Chuyende
+import ScreenMainChuyende1 from "../../Chuyende/Chuyende1/Index";
 import ScreenChuyende1 from "../../Chuyende/Chuyende1/Chuyende1";
 import Tracnghiemchuyende1 from "../../Chuyende/Chuyende1/Tracnghiem";
 // List Unit
@@ -38,12 +40,14 @@ const Main = () => {
       }}
     >
       <MainStack.Screen name="MainTabs" component={MainTabs} />
+      <MainStack.Screen name="ScreenMainChuyende1" component={ScreenMainChuyende1} />
       <MainStack.Screen name="ScreenChuyende1" component={ScreenChuyende1} />
       <MainStack.Screen name="Tracnghiemchuyende1" component={Tracnghiemchuyende1} />
       <MainStack.Screen name="Cources" component={Cources} />
       <MainStack.Screen name="Account" component={Account} />
       <MainStack.Screen name="RankScreen" component={RankScreen} />
       <MainStack.Screen name="ScreenMainUnit1" component={ScreenMainUnit1} />
+      <MainStack.Screen name="RankScreenmajor1" component={RankScreenmajor1} />
       <MainStack.Screen name="ScreenFistVocabularyUnit1" component={ScreenFistVocabularyUnit1} />
       <MainStack.Screen name="TracnghiemFirstVocabularyUnit1" component={TracnghiemFirstVocabularyUnit1} />
       <MainStack.Screen name="TracnghiemSecondVocabularyUnit1" component={TracnghiemSecondVocabularyUnit1} />

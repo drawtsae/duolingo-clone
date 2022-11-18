@@ -18,6 +18,8 @@ export type MainStackParamList = {
 	Tracnghiemchuyende1:undefined;
 	RankScreen: undefined;
 	Account:undefined;
+	ScreenMainChuyende1:undefined;
+	RankScreenmajor1:undefined;
 };
 
 export type AuthStackParamList = {

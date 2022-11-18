@@ -11,15 +11,15 @@ const ChuyendeScreen = () => {
         </View>
         <View style={{flex:5, alignItems:'center'}}>
             <TouchableOpacity 
-            onPress={()=> navigation.navigate('Tracnghiemchuyende1')}
+            onPress={()=> navigation.navigate('ScreenMainChuyende1')}
             style={{height:80, width:'85%', backgroundColor:"#C9ADEB", alignItems:'center',justifyContent:'center', marginVertical:20, borderWidth:1, borderRadius:25, flexDirection:'row', paddingHorizontal:10}}>
                 <Icon name='book' size={35}></Icon>
-                <Text style={{paddingHorizontal:'23%', fontSize:16}}>Chuyen de </Text>
+                <Text style={{paddingHorizontal:'23%', fontSize:16}}>Major</Text>
                 <Icon name='chevron-right' size={30}></Icon>
             </TouchableOpacity>
             <TouchableOpacity style={{height:80, width:'85%', backgroundColor:"#C9ADEB",alignItems:'center',justifyContent:'center', borderWidth:1, borderRadius:25, flexDirection:'row', paddingHorizontal:10}}>
                 <Icon name='book' size={35}></Icon>
-                <Text style={{paddingHorizontal:'27%', fontSize:16}}>DE thi </Text>
+                <Text style={{paddingHorizontal:'27%', fontSize:16}}>Examination</Text>
                 <Icon name='chevron-right' size={30}></Icon>
             </TouchableOpacity>
             <View style={{width:'100%', height:'60%', alignItems:'center'}}>

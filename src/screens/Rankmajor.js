@@ -14,16 +14,13 @@ let name ='';
 const getdata = async (userId)=> {
     let { data: ScoreOfUser, error } = await supabase
     .from('ScoreOfUser')
-    .select('Name,ScoreUnit1')
-    //.eq('UserID', userId).single()
-    console.log(ScoreOfUser)
+    .select('Name,Scoremajor1')
     return ScoreOfUser;
 }
 const getdata2 = async (userId)=> {
     let { data: ScoreOfUser, error } = await supabase
     .from('ScoreOfUser')
-    .select('ScoreUnit1')
-    //.eq('UserID', userId).single()
+    .select('Scoremajor1')
     return ScoreOfUser;
 }
 const getdata3 = async (userId)=> {
@@ -33,30 +30,28 @@ const getdata3 = async (userId)=> {
     .eq('UserID', userId).single()
     return ScoreOfUser;
 }
-const RankScreen = () => {
+const RankScreenmajor1 = () => {
     const navigation = useNavigation();
     const [userData, setUserData] = useState({});
     const [userData2, setUserData2] = useState({});
     const [userData3, setUserData3] = useState({});
-    const [Loadingggg, setLoadingggg]  =useState(true);
     const auth = useContext(AuthContext);
     const [Xephanguserdata, SetXephanguserdata] = useState({});
-    
-    const load =() =>{
+    const load =()=>{
         getdata()
         .then((data) => (setUserData(data)))
         getdata2()
         .then((data) => (setUserData2(data)));
         getdata3(auth.session.user.id)
         .then((data) => (setUserData3(data)));
-        name = userData3?.Name;
         handle();
+        name = userData3?.Name;
     }
     const handle =() =>{
         let A;
         let bds = 0;
         for (let index = 0; index < userData.length; index++) {
-            array[index] = userData2[index]?.ScoreUnit1;
+            array[index] = userData2[index]?.Scoremajor1;
             
         }
         // Sắp xếp thứ hạng theo mảng
@@ -73,7 +68,7 @@ const RankScreen = () => {
         // HANDLE
         for (let index = 0; index < userData.length; index++) {
             for (let jndex = 0; jndex < userData.length ; jndex++) {
-                if (array[index] == userData2[jndex]?.ScoreUnit1 )
+                if (array[index] == userData2[jndex]?.Scoremajor1 )
                 {
                     for (let i = 0; i < brray.length; i++) {
                         if (jndex == brray[i] ) {
@@ -84,9 +79,8 @@ const RankScreen = () => {
                         brray[index] = jndex;
                 }
             } 
-        }  
+        }
     }
-
   return (
     
     <View style = {{flex:1}}>
@@ -98,7 +92,7 @@ const RankScreen = () => {
                 <TouchableOpacity style={{padding:5, backgroundColor:'#E6E7E9', width:45, borderRadius:10}} onPress={() => navigation.goBack()}>
                             <Icon name='backward' size={30}></Icon>
                         </TouchableOpacity>
-                <TouchableOpacity onPress={load}>
+                        <TouchableOpacity onPress={load}>
                     <Image source={require('../screens/auth/Assets/Icon/sync.png')} style={{height:30, width:30}}></Image>
                 </TouchableOpacity>
             </View>
@@ -126,42 +120,42 @@ const RankScreen = () => {
                 img={require('../screens/auth/Assets/Image/Thachdau.png')}
                 rank='1'
                 bg={name==userData[brray[0]]?.Name ? "#F4F4D6" : null}
-                score={userData[brray[0]]?.ScoreUnit1}
+                score={userData[brray[0]]?.Scoremajor1}
                 title={userData[brray[0]]?.Name}
                 />
                 <ListS
                 img={require('../screens/auth/Assets/Image/AAA.png')}
                 bg={name==userData[brray[1]]?.Name ? "#F4F4D6" : null}
                 rank='2'
-                score={userData[brray[1]]?.ScoreUnit1}
+                score={userData[brray[1]]?.Scoremajor1}
                 title={userData[brray[1]]?.Name}
                 />
                 <ListS
                 img={require('../screens/auth/Assets/Image/Caothumini.png')}
                 rank='3'
                 bg={name==userData[brray[2]]?.Name ? "#F4F4D6" : null}
-                score={userData[brray[2]]?.ScoreUnit1}
+                score={userData[brray[2]]?.Scoremajor1}
                 title={userData[brray[2]]?.Name}
                 />
                 <ListS
                 img={require('../screens/auth/Assets/Image/Kimcuong.png')}
                 rank='4'
                 bg={name==userData[brray[3]]?.Name ? "#F4F4D6" : null}
-                score={userData[brray[3]]?.ScoreUnit1}
+                score={userData[brray[3]]?.Scoremajor1}
                 title={userData[brray[3]]?.Name}
                 />
                 <ListS
                 img={require('../screens/auth/Assets/Image/Satvun.png')}
                 rank='5'
                 bg={name==userData[brray[4]]?.Name ? "#F4F4D6" : null}
-                score={userData[brray[4]]?.ScoreUnit1}
+                score={userData[brray[4]]?.Scoremajor1}
                 title={userData[brray[4]]?.Name}
                 />
                 <ListS
                 img={require('../screens/auth/Assets/Image/Satvun.png')}
                 rank='6'
                 bg={name==userData[brray[5]]?.Name ? "#F4F4D6" : null}
-                score={userData[brray[5]]?.ScoreUnit1}
+                score={userData[brray[5]]?.Scoremajor1}
                 title={userData[brray[5]]?.Name}
                 />
             </View>
@@ -170,4 +164,4 @@ const RankScreen = () => {
     </View>
   )
 }
-export default RankScreen
+export default RankScreenmajor1

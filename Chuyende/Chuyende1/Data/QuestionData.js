@@ -1,64 +1,74 @@
 const data =[
     {
-        question:'EXERCISE 1: Choose the word whose underlined part is pronounced differently from the others',
-        options: ['A. arrived','B. believed','C. received','D. hoped'],
-        correct_option:'D. hoped',
+        question:'EXERCISE 1: Choose the word whose underlined part is pronounced differently from the others.',
+        options: ['A. arriv','B. believ','C. receiv','D. hop'],
+        options1: 'ed',
+        correct_option:'D. hop',
         note:' To join hands = work together : Cùng nhau, chung sức, cùng làm việc '
 
     },
     {
         question:'EXERCISE 1: Choose the word whose underlined part is pronounced differently from the others',
-        options: ['A. opened','B. knocked','C. played','D.occured'],
-        correct_option:'A. Responsibility',
+        options: ['A. open','B. knock','C. play','D.occur'],
+        options1: 'ed',
+        correct_option:'B. knock',
         note:'Take the responsibility for +V_ing : nhận trách nhiệm     Ex: You have to take the responsibility for watching out your child'
     },
     {
-        question:'EXERCISE 1: Choose the word whose underlined part is pronounced differently from the others',
-        options: ['A. hurry','B. hurried','C. hurries','D. hurriedly'],
-        correct_option:'A. hurry',
+        question:'EXERCISE 1: Choose the word whose underlined part is pronounced differently from the others.afsafas',
+        options: ['A. rubb','B. tugg','C. stopp','D. fill'],
+        options1: 'ed',
+        correct_option:'C. stopp',
         note:'be in a hurry : vội vã'
     },
     {
         question:'EXERCISE 1: Choose the word whose underlined part is pronounced differently from the others',
-        options: ['A. Solution','B. Night shift','C. Household chores','D. Special dishes'],
-        correct_option:'B. Night shift',
+        options: ['A. dimm','B. travell','C. pass','D. stirr'],
+        options1: 'ed',
+        correct_option:'C. pass',
         note:'Night shift : ca đêm'
     },
     {
         question:'EXERCISE 1: Choose the word whose underlined part is pronounced differently from the others',
-        options: ['A. responsible','B. frank','C. obedient','D. close-knit'],
-        correct_option:'D. close-knit',
+        options: ['A. tipp','B. begg','C. quarrell','D. carri'],
+        options1: 'ed',
+        correct_option:'A. tipp',
         note:'close-knit (a) quan hệ khăng khít  - a very close-knit family'
     },
     {
         question:'EXERCISE 1: Choose the word whose underlined part is pronounced differently from the others',
-        options: ['EXERCISE 1: Choose the word whose underlined part is pronounced differently from the others'],
-        correct_option:'A. mischievous',
-        note:'Mischievous (adj) Ngịch ngợm - active (adj)   -   adj and adj'
+        options: ['A. tri','B. obey','C. clean','D. ask'],
+        options1: 'ed',
+        correct_option:'D. ask',
+        note:'close-knit (a) quan hệ khăng khít  - a very close-knit family'
     },
     {
         question:'EXERCISE 1: Choose the word whose underlined part is pronounced differently from the others',
-        options: ['A. try','b. doing','C. attempt','D. aim'],
-        correct_option:'C. attempt',
-        note:'attempt (v) cố gắng để làm gì'
-    },
-    {
-        question:"EXERCISE 1: Choose the word whose underlined part is pronounced differently from the others",
-        options: ['A. fly','B. flying','C. to fly','D. to flying'],
-        correct_option:'C. to fly',
-        note:' be willing to + V1 : sẵn long làm việc gì'
-    },
-    {
-        question:"EXERCISE 1: Choose the word whose underlined part is pronounced differently from the others",
-        options: ['A. on','B. at ','C. in','D. under'],
-        correct_option:'D. under',
-        note:'Under pressure : dưới sức ép, áp lực'
+        options: ['A. pack','B. add','C. clean','D. pronounc'],
+        options1: 'ed',
+        correct_option:'B. add',
+        note:'close-knit (a) quan hệ khăng khít  - a very close-knit family'
     },
     {
         question:'EXERCISE 1: Choose the word whose underlined part is pronounced differently from the others',
-        options: ['A. Responsible','B. Caring','C. Obedient','D. Lovely'],
-        correct_option:'C. Obedient',
-        note:'Obedient (adj) >< Disobedient (adj) : Vâng lời >< không vâng lời'
+        options: ['A. watch','B. phon','C. referr','D. follow'],
+        options1: 'ed',
+        correct_option:'A. watch',
+        note:'close-knit (a) quan hệ khăng khít  - a very close-knit family'
+    },
+    {
+        question:'EXERCISE 1: Choose the word whose underlined part is pronounced differently from the others',
+        options: ['A. agre','B. succeed','C. smil','D. lov'],
+        options1: 'ed',
+        correct_option:'B. succeed',
+        note:'close-knit (a) quan hệ khăng khít  - a very close-knit family'
+    },
+    {
+        question:'EXERCISE 1: Choose the word whose underlined part is pronounced differently from the others',
+        options: ['A. laugh','B. wash','C. help','D. weigh'],
+        options1: 'ed',
+        correct_option:'D. weigh',
+        note:'close-knit (a) quan hệ khăng khít  - a very close-knit family'
     },
 ]
 export default data;

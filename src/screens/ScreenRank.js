@@ -17,9 +17,11 @@ const ScreenRank = () => {
                 <Text style={{paddingHorizontal:'10%', fontSize:16}}>BXH Rank Of Unit 1</Text>
                 <Icon name='chevron-right' size={30}></Icon>
             </TouchableOpacity>
-            <TouchableOpacity style={{height:80, width:'85%', backgroundColor:"#C9ADEB",alignItems:'center',justifyContent:'center', borderWidth:1, borderRadius:25, flexDirection:'row', paddingHorizontal:10}}>
+            <TouchableOpacity 
+            onPress={()=> navigation.navigate('RankScreenmajor1')}
+            style={{height:80, width:'85%', backgroundColor:"#C9ADEB",alignItems:'center',justifyContent:'center', borderWidth:1, borderRadius:25, flexDirection:'row', paddingHorizontal:10}}>
                 <Image source={require('./auth/Assets/Image/ranking.png')} style={{height:35, width:35}}></Image>
-                <Text style={{paddingHorizontal:'10%', fontSize:16}}>BXH Rank Of Unit 1</Text>
+                <Text style={{paddingHorizontal:'10%', fontSize:16}}>BXH Rank Of Major</Text>
                 <Icon name='chevron-right' size={30}></Icon>
             </TouchableOpacity>
             <View style={{width:'100%', height:'60%', alignItems:'center'}}>
