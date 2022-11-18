@@ -121,7 +121,7 @@ const Cources =() =>{
                                 userData?.TiendoUnit1 != '100%' ? (
                                     <CourseList
                                         onPress={Shows}
-                                        img={require('../images/D.jpg')}
+                                        img={require('../images/dc.png')}
                                         title="Unit 2"
                                         bg='rgba(00,00,00,.4)'
                                         lessons="20 lessons"
@@ -129,7 +129,7 @@ const Cources =() =>{
                                 />
                                 ): userData?.TiendoUnit1 == '100%' ? (
                                     <CourseList
-                                        img={require('../images/D.jpg')}
+                                        img={require('../images/dc.png')}
                                         title="Unit 2 "
                                         bg="#fef8e3"
                                         lessons="20 lessons"
@@ -141,7 +141,7 @@ const Cources =() =>{
                                 userData?.TiendoUnit2 != '100%' ? (
                                     <CourseList
                                         onPress={Shows}
-                                        img={require('../images/D.jpg')}
+                                        img={require('../images/dc.png')}
                                         title="UI Motion Design in After Effects"
                                         bg='rgba(00,00,00,.4)'
                                         lessons="20 lessons"
@@ -149,7 +149,7 @@ const Cources =() =>{
                                 />
                                 ): userData?.TiendoUnit2 == '100%' ? (
                                     <CourseList
-                                        img={require('../images/D.jpg')}
+                                        img={require('../images/dc.png')}
                                         title="Sketch shortcuts and tricks"
                                         bg="#fef8e3"
                                         lessons="20 lessons"
@@ -161,7 +161,7 @@ const Cources =() =>{
                                 userData?.TiendoUnit3 != '100%' ? (
                                     <CourseList
                                         onPress={Shows}
-                                        img={require('../images/D.jpg')}
+                                        img={require('../images/dc.png')}
                                         title="UI Motion Design in After Effects"
                                         bg='rgba(00,00,00,.4)'
                                         lessons="20 lessons"
@@ -169,7 +169,7 @@ const Cources =() =>{
                                 />
                                 ): userData?.TiendoUnit3 == '100%' ? (
                                     <CourseList
-                                        img={require('../images/D.jpg')}
+                                        img={require('../images/dc.png')}
                                         title="Sketch shortcuts and tricks"
                                         bg="#fef8e3"
                                         lessons="20 lessons"
@@ -181,7 +181,7 @@ const Cources =() =>{
                                 userData?.TiendoUnit4 != '100%' ? (
                                     <CourseList
                                         onPress={Shows}
-                                        img={require('../images/D.jpg')}
+                                        img={require('../images/dc.png')}
                                         title="UI Motion Design in After Effects"
                                         bg='rgba(00,00,00,.4)'
                                         lessons="20 lessons"
@@ -190,7 +190,7 @@ const Cources =() =>{
                                 ): userData?.TiendoUnit4 == '100%' ? (
                                     <CourseList
                                         
-                                        img={require('../images/D.jpg')}
+                                        img={require('../images/dc.png')}
                                         title="Sketch shortcuts and tricks"
                                         bg="#fef8e3"
                                         lessons="20 lessons"
@@ -202,7 +202,7 @@ const Cources =() =>{
                                 userData?.TiendoUnit5 != '100%' ? (
                                     <CourseList
                                     onPress={Shows}
-                                        img={require('../images/D.jpg')}
+                                        img={require('../images/dc.png')}
                                         title="UI Motion Design in After Effects"
                                         bg='rgba(00,00,00,.4)'
                                         lessons="20 lessons"
@@ -210,7 +210,7 @@ const Cources =() =>{
                                 />
                                 ): userData?.TiendoUnit5 == '100%' ? (
                                     <CourseList
-                                        img={require('../images/D.jpg')}
+                                        img={require('../images/dc.png')}
                                         title="Sketch shortcuts and tricks"
                                         bg="#fef8e3"
                                         lessons="20 lessons"
@@ -222,7 +222,7 @@ const Cources =() =>{
                                 userData?.TiendoUnit5 != '100%' ? (
                                     <CourseList
                                         onPress={Shows}
-                                        img={require('../images/D.jpg')}
+                                        img={require('../images/dc.png')}
                                         title="UI Motion Design in After Effects"
                                         bg='rgba(00,00,00,.4)'
                                         lessons="20 lessons"
@@ -230,7 +230,7 @@ const Cources =() =>{
                                 />
                                 ): userData?.TiendoUnit5 == '100%' ? (
                                     <CourseList
-                                        img={require('../images/D.jpg')}
+                                        img={require('../images/dc.png')}
                                         title="Sketch shortcuts and tricks"
                                         bg="#fef8e3"
                                         lessons="20 lessons"
