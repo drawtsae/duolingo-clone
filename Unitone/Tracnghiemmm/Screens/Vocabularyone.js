@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect }  from 'react'
-import { View, Text,  TouchableOpacity, Modal, Animated} from 'react-native'
+import { View, Text,  TouchableOpacity, Modal, Animated, ImageBackground} from 'react-native'
 import { COLORS} from '../Constants/theme'
 import data1 from "../Data/DataQues"
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -247,11 +247,11 @@ const TracnghiemFirstVocabularyUnit1 = ({navigation}) => {
                     borderRadius:20,
                     borderWidth:2,
                     borderColor: COLORS.success ,
-                    backgroundColor:COLORS.success +'20' }}>
+                    backgroundColor:COLORS.noteT}}>
                 <TouchableOpacity
                 onPress={handleNext}
                 style={{
-                 width: '30%', backgroundColor: COLORS.success+'80', padding: 10, borderRadius:50, margin:10
+                 width: '30%', backgroundColor: COLORS.success, padding: 10, borderRadius:50, margin:10
                 }}>
                     <Text style={{fontSize: 20, color: 'black', textAlign: 'center'}}>Next</Text>
                 </TouchableOpacity>
@@ -278,18 +278,18 @@ const TracnghiemFirstVocabularyUnit1 = ({navigation}) => {
                     borderRadius:20,
                     borderWidth:2,
                     borderColor: COLORS.error ,
-                    backgroundColor:COLORS.error +'20' }}>
+                    backgroundColor:COLORS.noteF}}>
                 <TouchableOpacity
                 onPress={handleNext}
                 style={{
-                 width: '30%', backgroundColor: COLORS.error+'80', padding: 10, borderRadius:50, margin:10
+                 width: '30%', backgroundColor: COLORS.error, padding: 10, borderRadius:50, margin:10
                 }}>
                     <Text style={{fontSize: 20, color: 'black', textAlign: 'center'}}>Next</Text>
                 </TouchableOpacity>
                 <View 
             style={{marginTop:20, width:'100%', height:'50%', borderRadius:20, padding:10}}  
             >
-                <Text style={{color:COLORS.success}}>{allQuestions[currentQuestionIndex]?.note}</Text>
+                <Text style={{color:COLORS.error, fontSize:20}}>{allQuestions[currentQuestionIndex]?.note}</Text>
             </View>
                 </View>
             )
@@ -325,7 +325,8 @@ const TracnghiemFirstVocabularyUnit1 = ({navigation}) => {
         )
     }
     return(
-        <View
+        <ImageBackground
+        source={require('../Assets/Images/Bground.jpg')}
         style={{height:'100%',width:'100%', backgroundColor:'white'}}
         >
            <View style={{
@@ -423,7 +424,7 @@ const TracnghiemFirstVocabularyUnit1 = ({navigation}) => {
                    </View>
                </Modal>
            </View>
-           </View>     
+           </ImageBackground>     
 ) 
 }
 export default TracnghiemFirstVocabularyUnit1

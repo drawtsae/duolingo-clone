@@ -1,55 +1,14 @@
 import React, { useState, useContext, useEffect }  from 'react'
-import { View, Text,  TouchableOpacity, Modal, Animated, ScrollView,ImageBackground} from 'react-native'
+import { View, Text,  TouchableOpacity, Modal, Animated , ScrollView} from 'react-native'
 import { COLORS} from '../Constants/theme'
-import data from '../Data/QuestionData';
+import data from './Data/QuestionData';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 // import Supabase and data user
-import { supabase } from '../../../../src/initSupabase';
-import { AuthContext} from '../../../../src/provider/AuthProvider';
-//update tien do vao bang TienDocpnUnit1
-const UpdateTienDo = async (userId, value)=> {
-    const { data, error } = await supabase
-    .from('TienDocpnUnit1')
-    .update({ PronuciationUnit1: value })
-    .eq('UserID', userId)
-    console.log("UpdateTienDo " ,data)
-}
-//TienDoHoanthanh
-const UpdateTienDo2 = async (userId, value)=> {
-    const { data, error } = await supabase
-    .from('TienDoHoanthanh')
-    .update({ TiendoUnit1: value })
-    .eq('UserID', userId)
-    console.log("TienDoHoanthanh" ,data)
-}
-// Get data Unit1 from database TienDocpnUnit1
-const getdata = async (userId)=> {//
-    let { data: TienDocpnUnit1, error } = await supabase
-    .from('TienDocpnUnit1')
-    .select('*')
-    .eq('UserID', userId).single()
-    console.log(TienDocpnUnit1)
-    return TienDocpnUnit1;
-}
-// Get data Unit1 from database TienDoHoanthanh
-const getdata2 = async (userId)=> {
-    let { data: TienDoHoanthanh, error } = await supabase
-    .from('TienDoHoanthanh')
-    .select('*')
-    .eq('UserID', userId).single()
-    console.log(TienDoHoanthanh)
-    return TienDoHoanthanh;
-}
-// Update Score
-const UpdateScore = async (userId, value)=> {
-    const { data, error } = await supabase
-    .from('ScoreOfUser')
-    .update({ ScoreUnit1 : value })
-    .eq('UserID', userId)
-}
-// Get data Score from database 
-const getScore = async (userId)=> {
+import { supabase } from '../../src/initSupabase';
+import { AuthContext} from '../../src/provider/AuthProvider';
+var ABRRAY =new Array();
+var BRRAY = new Array();
+const getdata = async (userId)=> {
     let { data: ScoreOfUser, error } = await supabase
     .from('ScoreOfUser')
     .select('*')
@@ -57,36 +16,22 @@ const getScore = async (userId)=> {
     console.log(ScoreOfUser)
     return ScoreOfUser;
     }
-//Main
-const TracnghiemThirtPronuciationUnit1 = ({navigation}) => {
+const UpdateScore = async (userId, value)=> {
+    const { data, error } = await supabase
+    .from('ScoreOfUser')
+    .update({ Scoremajor1 : value })
+    .eq('UserID', userId)
+}
+const Tracnghiemdethi1 = ({navigation}) => {
+    //Show optioned
+    // Update Score
     const [userData, setUserData] = useState({})
-    const [userData2, setUserData2] = useState({})
-    const [userScore, setUserScore] = useState({})
     const auth = useContext(AuthContext);
     //useEffect
-    useEffect(() => {
-        getdata(auth.session?.user.id)
-        .then((data) => setUserData(data));
-        getdata2(auth.session?.user.id)
-        .then((data) => setUserData2(data));
-        getScore(auth.session?.user.id)
-        .then((data) => setUserScore(data));
-    }, auth.session?.user.id);
-    //Update
-    const [value, Setvalue] = useState('100%'); // Thong so thay doi
     const update = async() =>{
-        //update vocabulary
-        if (userData?.PronuciationUnit1 == "66.7%" || userData?.PronuciationUnit1 == "0%" || userData?.PronuciationUnit1 == "33.3%"){ //
-            await UpdateTienDo(auth.session?.user.id, value);
-        };
-        // update unit 1
-        if (userData2?.TiendoUnit1 == "41.7%" || userData2?.TiendoUnit1 == "33.3%" || userData2?.TiendoUnit1 == "25%"){//
-            await UpdateTienDo2(auth.session?.user.id, '50%');
-        }
-        if ( userScore?.ScoreUnit1 < 25){
-            await UpdateScore(auth.session?.user.id,(userScore?.ScoreUnit1 + score));
-        }
+        await UpdateScore(auth.session?.user.id, score);
     }
+    var ARRAY = new Array();
     const allQuestions = data;
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
     const [currentOptionSelected, setCurrentOptionSelected] = useState(null);
@@ -96,27 +41,94 @@ const TracnghiemThirtPronuciationUnit1 = ({navigation}) => {
     const [showNextButton, setShowNextButton] = useState(false)
     const [showNextButtonErrow, setShowNextButtonErrow] = useState(false)
     const [showScoreModal, setShowScoreModal] = useState(false)
-    //Handle
-    const validateAnswer = (selectedOption) => {
-        let correct_option = allQuestions[currentQuestionIndex]['correct_option'];
-        setCurrentOptionSelected(selectedOption);
-        setCorrectOption(correct_option);
-        setIsOptionsDisabled(true);
-        if(selectedOption==correct_option){
-            // Set Score
-            setScore(score+1)
-            setShowNextButton(true)
-        }
-        else{
-        // Show Next Button
-        setShowNextButtonErrow(true)
-        }
-    }   
+    const [answer1 ,setansewr1] = useState('');
+    const [dem, setdem] = useState(0);
+    //Thuật toán
+    for (let index = 0; index < allQuestions.length; index++) {
+        ARRAY[index] = allQuestions[index].correct_option
+    }
+    let index = dem;
+    const AAAAA =(Options,index)=>{
+        BRRAY[index] = Options
+        setansewr1(Options)
+        setShowNextButton(true)
+    }
+    BRRAY[index] = answer1;
+    //Gía trị đáp án đúng
+    //Show đáp án đã chon
+    const Showdapan =()=>{
+        let A=0;
+        return (
+            allQuestions.map((a) =>(
+                <View style={{width:'100%', margin:10, borderWidth:1, padding:10, borderRadius:20,}}>
+                     <Text style={{
+                    color: 'black',
+                    fontSize: 15, paddingTop:10
+                }}>{a.question}
+                    <Text style={{textDecorationLine:'underline'}}>{a.undeline1}</Text>
+                    <Text>{a.question1}</Text>
+                    <Text style={{textDecorationLine:'underline'}}>{a.undeline2}</Text>
+                    <Text>{a.question2}</Text>
+                    <Text style={{textDecorationLine:'underline'}}>{a.undeline3}</Text>
+                    <Text>{a.question3}</Text>
+                    <Text style={{textDecorationLine:'underline'}}>{a.undeline4}</Text>
+                    <Text>{a.question4}</Text>
+                </Text>
+                     <View>
+                    {
+                    a.options.map(option=>(
+                        <View style={{flexDirection:'row', marginTop:20, alignItems:"center"}}>
+                        <TouchableOpacity 
+                        onPress={()=> {}}
+                        disabled={isOptionsDisabled}
+                        key={option}
+                        style={{
+                            borderWidth: 1.5, 
+                            backgroundColor: option == BRRAY[A] ? (option == ARRAY[A] ?  COLORS.success : COLORS.error   ) : option == ARRAY[A] ? COLORS.success : 'white',
+                            height: 25, width:25, borderRadius: 20,
+                            flexDirection: 'row',
+                            alignItems: 'center', justifyContent: 'space-between',
+                            marginLeft:10,
+                        }}
+                        >
+                        </TouchableOpacity>
+                        <Text style={{fontSize: 20, color: 'black', marginLeft:25}} >{option} 
+                            <Text style={{textDecorationLine:'underline'}}>
+                                {a?.options1} 
+                            </Text>
+                        </Text>   
+                        </View>
+                    ))
+                    }
+                    {
+                        a.note.map(note =>(
+                            <View style={{marginTop:3}}>
+                                <Text>
+                                    {note}
+                                </Text>
+                            </View>
+                        ))
+                    }
+                    <Text>{A++}</Text>
+            </View>
+                </View>
+            ))
+        )
+    }
     const handleNext = () => {
         if(currentQuestionIndex== allQuestions.length-1){
             // Last Question
             // Show Score Modal
             setShowScoreModal(true)
+            let A = 0;
+            for (let index = 0; index < allQuestions.length; index++) {
+                if(BRRAY[index] == ARRAY[index])
+                {
+                    A=A+1;
+                    console.log(BRRAY[index], ARRAY[index], score); 
+                }
+            }
+            setScore(A);
         }else{
             setCurrentQuestionIndex(currentQuestionIndex+1);
             setCurrentOptionSelected(null);
@@ -124,6 +136,7 @@ const TracnghiemThirtPronuciationUnit1 = ({navigation}) => {
             setIsOptionsDisabled(false);
             setShowNextButton(false);
             setShowNextButtonErrow(false);
+            setdem(dem+1)
         }
         Animated.timing(progress, {
             toValue: currentQuestionIndex+1,
@@ -135,6 +148,7 @@ const TracnghiemThirtPronuciationUnit1 = ({navigation}) => {
         setShowScoreModal(false);
         setCurrentQuestionIndex(0);
         setScore(0);
+        setdem(0);
         setCurrentOptionSelected(null);
         setCorrectOption(null);
         setIsOptionsDisabled(false);
@@ -163,98 +177,63 @@ const TracnghiemThirtPronuciationUnit1 = ({navigation}) => {
                 {/* Question */}
                 <Text style={{
                     color: 'black',
-                    fontSize: 20
-                }}>{allQuestions[currentQuestionIndex]?.question}</Text>
+                    fontSize: 17,
+                    fontWeight:"bold",
+                }}>{allQuestions[currentQuestionIndex]?.title}</Text>
+                <Text style={{
+                    color: 'black',
+                    fontSize: 15, paddingTop:10
+                }}>{allQuestions[currentQuestionIndex]?.question}
+                    <Text style={{textDecorationLine:'underline'}}>{allQuestions[currentQuestionIndex]?.undeline1}</Text>
+                    <Text>{allQuestions[currentQuestionIndex]?.question1}</Text>
+                    <Text style={{textDecorationLine:'underline'}}>{allQuestions[currentQuestionIndex]?.undeline2}</Text>
+                    <Text>{allQuestions[currentQuestionIndex]?.question2}</Text>
+                    <Text style={{textDecorationLine:'underline'}}>{allQuestions[currentQuestionIndex]?.undeline3}</Text>
+                    <Text>{allQuestions[currentQuestionIndex]?.question3}</Text>
+                    <Text style={{textDecorationLine:'underline'}}>{allQuestions[currentQuestionIndex]?.undeline4}</Text>
+                    <Text>{allQuestions[currentQuestionIndex]?.question4}</Text>
+                </Text>
             </View>
         )
     }
     const renderOptions = () => {
+        
         return (
             <View>
                 {
                     allQuestions[currentQuestionIndex]?.options.map(option => (
+                        <View style={{flexDirection:'row', marginTop:20, alignItems:"center"}}>
                         <TouchableOpacity 
-                        onPress={()=> validateAnswer(option)}
+                        onPress={()=> AAAAA(option,currentQuestionIndex)}
                         disabled={isOptionsDisabled}
                         key={option}
                         style={{
-                            borderWidth: 3, 
-                            borderColor: option==correctOption 
-                            ? COLORS.success
-                            : option==currentOptionSelected 
-                            ? COLORS.error 
-                            : COLORS.secondary1+'40',
-                            backgroundColor: option==correctOption 
-                            ? COLORS.success +'30'
-                            : option==currentOptionSelected 
-                            ? COLORS.error +'30'
-                            : COLORS.secondary1+'20',
-                            height: 60, borderRadius: 20,
+                            borderWidth: 1.5, 
+                            backgroundColor: option == BRRAY[currentQuestionIndex] ? COLORS.secondary+'10' : COLORS.error,
+                            height: 25, width:25, borderRadius: 20,
                             flexDirection: 'row',
                             alignItems: 'center', justifyContent: 'space-between',
-                            paddingHorizontal: 20,
-                            marginVertical: 10
+                            marginLeft:10,
                         }}
                         >
-                            <Text style={{fontSize: 20, color: 'black'}}>{option}</Text>
-
-                            {/* Show Check Or Cross Icon based on correct answer*/}
-                            {
-                                option==correctOption ? (
-                                    <View style={{
-                                        width: 30, height: 30, borderRadius: 30/2,
-                                        backgroundColor: COLORS.success,
-                                        justifyContent: 'center', alignItems: 'center'
-                                    }}>
-                                        <MaterialCommunityIcons name="check" style={{
-                                            color: COLORS.white,
-                                            fontSize: 20
-                                        }} />
-                                    </View>
-                                ): option == currentOptionSelected ? (
-                                    <View style={{
-                                        width: 30, height: 30, borderRadius: 30/2,
-                                        backgroundColor: COLORS.error,
-                                        justifyContent: 'center', alignItems: 'center'
-                                    }}>
-                                        <MaterialCommunityIcons name="close" style={{
-                                            color: COLORS.white,
-                                            fontSize: 20
-                                        }} />
-                                    </View>            
-                                ) : null
-                            }
-
                         </TouchableOpacity>
+                        <Text style={{fontSize: 20, color: 'black', marginLeft:25}} >{option} 
+                            <Text style={{textDecorationLine:'underline'}}>
+                                {allQuestions[currentQuestionIndex]?.options1}
+                            </Text>
+                        </Text>
+                        </View>
                     ))
                 }
             </View>
         )
+        
     }
+    
     const renderNextButton = () => {
         if(showNextButton){
             return (             
-                <View 
-                    animationType="slide"
-                    style={{
-                    marginTop:10,
-                    alignItems:'center',
-                    flex:1,
-                    borderRadius:20,
-                    borderWidth:2,
-                    borderColor: COLORS.success ,
-                    backgroundColor:COLORS.noteT }}>
-            <ScrollView >
-                <View style={{padding:10}}>
-            {
-                    allQuestions[currentQuestionIndex]?.note.map(option => (
-                        
-                            <Text style={{color:COLORS.success, fontSize:17}}>{option}</Text>
-                        
-                    ))
-            }
-            </View>
-                <View style={{justifyContent:'center', alignItems:'center'}}>
+                <View style={{alignItems:'flex-end'}}>
                 <TouchableOpacity
                 onPress={handleNext}
                 style={{
@@ -262,49 +241,6 @@ const TracnghiemThirtPronuciationUnit1 = ({navigation}) => {
                 }}>
                     <Text style={{fontSize: 20, color: 'black', textAlign: 'center'}}>Next</Text>
                 </TouchableOpacity>
-                </View>
-                </ScrollView>
-                
-                </View>
-            )
-            }else{
-            return null
-        }
-    }
-    const renderNextButtonErrow = () => {
-        if(showNextButtonErrow){
-            return (             
-                <View 
-                    animationType="slide"
-                    style={{
-                    marginTop:10,
-                    alignItems:'center',
-                    flex:1,
-                    borderRadius:20,
-                    borderWidth:2,
-                    borderColor: COLORS.error ,
-                    backgroundColor:COLORS.noteF }}>
-            <ScrollView >
-                <View style={{padding:10}}>
-            {
-                    allQuestions[currentQuestionIndex]?.note.map(option => (
-                        
-                            <Text style={{color:COLORS.success, fontSize:17}}>{option}</Text>
-                        
-                    ))
-            }
-            </View>
-                <View style={{justifyContent:'center', alignItems:'center'}}>
-                <TouchableOpacity
-                onPress={handleNext}
-                style={{
-                 width: '30%', backgroundColor: COLORS.error+'80', padding: 10, borderRadius:50, margin:10
-                }}>
-                    <Text style={{fontSize: 20, color: 'black', textAlign: 'center'}}>Next</Text>
-                </TouchableOpacity>
-                </View>
-                </ScrollView>
-                
                 </View>
             )
             }else{
@@ -339,8 +275,7 @@ const TracnghiemThirtPronuciationUnit1 = ({navigation}) => {
         )
     }
     return(
-        <ImageBackground
-        source={require('../Assets/Bground.jpg')}
+        <View
         style={{height:'100%',width:'100%', backgroundColor:'white'}}
         >
            <View style={{
@@ -371,7 +306,6 @@ const TracnghiemThirtPronuciationUnit1 = ({navigation}) => {
 
                {/* Next Button */}
                {renderNextButton()}
-               {renderNextButtonErrow()}
                {/* Score Modal */}
                <Modal
                animationType="slide"
@@ -380,19 +314,23 @@ const TracnghiemThirtPronuciationUnit1 = ({navigation}) => {
                >
                     <View
                         style={{height:'100%',width:'100%', backgroundColor:'rgba(00,00,00,.7)'}}>
-                    
                    <View style={{
                        flex: 1,
                        alignItems: 'center',
                        justifyContent: 'center'
                    }}>
-                       <View style={{
+                       
+                        <ScrollView style={{
                            backgroundColor: COLORS.white,
                            width: '90%',
+                           height: '80%',
                            borderRadius: 20,
                            padding: 20,
-                           alignItems: 'center'
+                           marginTop: 20,
+                           
                        }}>
+                        <View style={{flex:1, alignItems: 'center',}}>
+                            <Showdapan></Showdapan>
                            <Text style={{fontSize: 30, fontWeight: 'bold'}}>{ score> (allQuestions.length/2) ? 'Congratulations!' : 'Oops!' }</Text>
 
                            <View style={{
@@ -420,11 +358,10 @@ const TracnghiemThirtPronuciationUnit1 = ({navigation}) => {
                                    textAlign: 'center', color: COLORS.white, fontSize: 20
                                }}>Retry Quiz</Text>
                            </TouchableOpacity>
-
-                       </View>
-
+                           </View>
+                           </ScrollView>
                        <TouchableOpacity
-                           onPress={()=> {navigation.navigate("ScreenMainUnit1"),update()}}
+                           onPress={()=> {navigation.navigate("Profile"), update ()}}
                            style={{
                                 marginTop:'10%',
                                backgroundColor: COLORS.accent,
@@ -438,7 +375,7 @@ const TracnghiemThirtPronuciationUnit1 = ({navigation}) => {
                    </View>
                </Modal>
            </View>
-           </ImageBackground>     
+           </View>     
 ) 
 }
-export default TracnghiemThirtPronuciationUnit1
+export default Tracnghiemdethi1

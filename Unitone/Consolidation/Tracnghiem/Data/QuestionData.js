@@ -27,7 +27,7 @@ const data =[
     {
         question:'5. Members of our family have very close relationships ______each other.',
         options: ['A. with','B.  of','C. among','D. at'],
-        correct_option:'B. Night shift',
+        correct_option:'D. at',
         note:'Night shift : ca đêm'
     },
     {

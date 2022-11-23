@@ -83,7 +83,7 @@ const TracnghiemDucloUnit1 = ({navigation}) => {
             await UpdateTienDo2(auth.session?.user.id, '75%');
         }
         if (userScore?.ScoreUnit1 == 0 || userScore?.ScoreUnit1 < 39){
-            await UpdateScore(auth.session?.user.id, score1);
+            await UpdateScore(auth.session?.user.id, userScore?.ScoreUnit1 + score1);
         }
     }
     const allQuestions = data;

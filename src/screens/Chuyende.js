@@ -17,7 +17,9 @@ const ChuyendeScreen = () => {
                 <Text style={{paddingHorizontal:'23%', fontSize:16}}>Major</Text>
                 <Icon name='chevron-right' size={30}></Icon>
             </TouchableOpacity>
-            <TouchableOpacity style={{height:80, width:'85%', backgroundColor:"#C9ADEB",alignItems:'center',justifyContent:'center', borderWidth:1, borderRadius:25, flexDirection:'row', paddingHorizontal:10}}>
+            <TouchableOpacity 
+            onPress={()=>navigation.navigate('Tracnghiemdethi1')}
+            style={{height:80, width:'85%', backgroundColor:"#C9ADEB",alignItems:'center',justifyContent:'center', borderWidth:1, borderRadius:25, flexDirection:'row', paddingHorizontal:10}}>
                 <Icon name='book' size={35}></Icon>
                 <Text style={{paddingHorizontal:'27%', fontSize:16}}>Examination</Text>
                 <Icon name='chevron-right' size={30}></Icon>

@@ -70,5 +70,40 @@ const data =[
         correct_option:'D. weigh',
         note:'close-knit (a) quan hệ khăng khít  - a very close-knit family'
     },
+    {
+        question:'EXERCISE 1: Choose the word whose underlined part is pronounced differently from the others',
+        options: ['A. walk','B. end','C. start','D. want'],
+        options1: 'ed',
+        correct_option:'A. walk',
+        note:'close-knit (a) quan hệ khăng khít  - a very close-knit family'
+    },
+    {
+        question:'EXERCISE 1: Choose the word whose underlined part is pronounced differently from the others',
+        options: ['A. kill','B. hurri','C. regrett','D. plann'],
+        options1: 'ed',
+        correct_option:'C. regrett',
+        note:'close-knit (a) quan hệ khăng khít  - a very close-knit family'
+    },
+    {
+        question:'EXERCISE 1: Choose the word whose underlined part is pronounced differently from the others',
+        options: ['A. visit','B. show','C. wonder','D. studi'],
+        options1: 'ed',
+        correct_option:'A. visit',
+        note:'close-knit (a) quan hệ khăng khít  - a very close-knit family'
+    },
+    {
+        question:'EXERCISE 1: Choose the word whose underlined part is pronounced differently from the others',
+        options: ['A. sacrific','B. finish','C. fix','D. seiz'],
+        options1: 'ed',
+        correct_option:'D. seiz',
+        note:'close-knit (a) quan hệ khăng khít  - a very close-knit family'
+    },
+    {
+        question:'EXERCISE 1: Choose the word whose underlined part is pronounced differently from the others',
+        options: ['A. need','B.  book','C. stopp','D. wash'],
+        options1: 'ed',
+        correct_option:'A. need',
+        note:'close-knit (a) quan hệ khăng khít  - a very close-knit family'
+    },
 ]
 export default data;

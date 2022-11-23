@@ -45,12 +45,11 @@ const Cources =() =>{
     useEffect(() => {
         getdata(auth.session?.user.id)
         .then((data) => setUserData(data));
-    });
+    }, auth.session?.user.id);
     //useEffect( async () => {
     //    await UpdateTienDo(auth.session?.user.id, 10)
     //}, auth.session?.user.id);
         const navigation = useNavigation();
-        let ListOne = '0%';
         const [showModal,SetShowModal] = useState(false);
         const [ShowErrowMessage, SetShowErowMessage] = useState ('Vui long hoan thanh bai truoc');
         const Shows =()=>{

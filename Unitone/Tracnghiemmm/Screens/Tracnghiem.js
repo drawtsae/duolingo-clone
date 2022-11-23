@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect }  from 'react'
-import { View, Text,  TouchableOpacity, Modal, Animated} from 'react-native'
+import { View, Text,  TouchableOpacity, Modal, Animated, ScrollView,ImageBackground} from 'react-native'
 import { COLORS} from '../Constants/theme'
 import data from '../Data/QuestionData';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -84,7 +84,7 @@ const TracnghiemSecondVocabularyUnit1 = ({navigation}) => {
             await UpdateTienDo2(auth.session?.user.id, '25%');
         }
         if (userScore?.ScoreUnit1 == 0 || userScore?.ScoreUnit1 < 5){
-            await UpdateScore(auth.session?.user.id,userScore?.ScoreUnit1 + score);
+            await UpdateScore(auth.session?.user.id,(userScore?.ScoreUnit1 + score));
         }
     }
     const allQuestions = data;
@@ -244,19 +244,27 @@ const TracnghiemSecondVocabularyUnit1 = ({navigation}) => {
                     borderRadius:20,
                     borderWidth:2,
                     borderColor: COLORS.success ,
-                    backgroundColor:COLORS.success +'20' }}>
+                    backgroundColor:COLORS.noteT }}>
+            <ScrollView >
+                <View style={{padding:10}}>
+            {
+                    allQuestions[currentQuestionIndex]?.note.map(option => (
+                        
+                            <Text style={{color:COLORS.success, fontSize:17}}>{option}</Text>
+                        
+                    ))
+            }
+            </View>
+                <View style={{justifyContent:'center', alignItems:'center'}}>
                 <TouchableOpacity
                 onPress={handleNext}
                 style={{
-                 width: '30%', backgroundColor: COLORS.success+'80', padding: 10, borderRadius:50, margin:10
+                 width: '30%', backgroundColor: COLORS.success, padding: 10, borderRadius:50, margin:10
                 }}>
                     <Text style={{fontSize: 20, color: 'black', textAlign: 'center'}}>Next</Text>
                 </TouchableOpacity>
-                <View 
-            style={{marginTop:5, width:'100%', height:'50%', borderRadius:20, padding:10}}  
-            >
-                <Text style={{color:COLORS.success, fontSize:20}}>{allQuestions[currentQuestionIndex]?.note}</Text>
-            </View>
+                </View>
+                </ScrollView>
                 </View>
             )
             }else{
@@ -276,19 +284,27 @@ const TracnghiemSecondVocabularyUnit1 = ({navigation}) => {
                     borderRadius:20,
                     borderWidth:2,
                     borderColor: COLORS.error ,
-                    backgroundColor:COLORS.error +'20' }}>
+                    backgroundColor:COLORS.noteF}}>
+            <ScrollView >
+                <View style={{padding:10}}>
+            {
+                    allQuestions[currentQuestionIndex]?.note.map(option => (
+                        
+                            <Text style={{color:COLORS.success, fontSize:17}}>{option}</Text>
+                        
+                    ))
+            }
+            </View>
+                <View style={{justifyContent:'center', alignItems:'center'}}>
                 <TouchableOpacity
                 onPress={handleNext}
                 style={{
-                 width: '30%', backgroundColor: COLORS.error+'80', padding: 10, borderRadius:50, margin:10
+                 width: '30%', backgroundColor: COLORS.error, padding: 10, borderRadius:50, margin:10
                 }}>
                     <Text style={{fontSize: 20, color: 'black', textAlign: 'center'}}>Next</Text>
                 </TouchableOpacity>
-                <View 
-            style={{marginTop:20, width:'100%', height:'50%', borderRadius:20, padding:10}}  
-            >
-                <Text style={{color:COLORS.success}}>{allQuestions[currentQuestionIndex]?.note}</Text>
-            </View>
+                </View>
+                </ScrollView>
                 </View>
             )
             }else{
@@ -323,7 +339,8 @@ const TracnghiemSecondVocabularyUnit1 = ({navigation}) => {
         )
     }
     return(
-        <View
+        <ImageBackground
+        source={require('../Assets/Images/Bground.jpg')}
         style={{height:'100%',width:'100%', backgroundColor:'white'}}
         >
            <View style={{
@@ -421,7 +438,7 @@ const TracnghiemSecondVocabularyUnit1 = ({navigation}) => {
                    </View>
                </Modal>
            </View>
-           </View>     
+           </ImageBackground>     
 ) 
 }
 export default TracnghiemSecondVocabularyUnit1

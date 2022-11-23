@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect }  from 'react';
 import { View, Text,  TouchableOpacity, Modal, Animated, ScrollView, Image} from 'react-native';
 import { COLORS} from '../Constants/theme';
 import data from '../Data/Data3';
+import datanote from '../Data/Datanote3'
 import Icon from 'react-native-vector-icons/FontAwesome';
 // import Supabase and data user
 import { supabase } from '../../../../src/initSupabase';
@@ -82,10 +83,11 @@ const TracnghiemSecondPronuciationUnit1 = ({navigation}) => {
         if (userData2?.TiendoUnit1 == "33.3%" || userData2?.TiendoUnit1 == "25%" ){//
             await UpdateTienDo2(auth.session?.user.id, '41.7%');
         }
-        if (userScore?.ScoreUnit1 == 0 || userScore?.ScoreUnit1 < 20){
-            await UpdateScore(auth.session?.user.id,userScore?.ScoreUnit1 + score1);
+        if ( userScore?.ScoreUnit1 < 20){
+            await UpdateScore(auth.session?.user.id,(userScore?.ScoreUnit1 + score1));
         }
     }
+    const note = datanote;
     const allQuestions = data;
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
     const [currentOptionSelected, setCurrentOptionSelected] = useState(null);
@@ -95,6 +97,7 @@ const TracnghiemSecondPronuciationUnit1 = ({navigation}) => {
     const [showktraButton, setShowktraButton] = useState(true)
     const [showNextButtonErrow, setShowNextButtonErrow] = useState(false)
     const [showScoreModal, setShowScoreModal] = useState(false)
+    const [NOTE , SHOWNOT] = useState(false)
     //Handle
     const [score1, setScore1] = useState(0)
     const [bug,Setbug] = useState(true);
@@ -142,6 +145,7 @@ const TracnghiemSecondPronuciationUnit1 = ({navigation}) => {
     {
         if (bug)
         {
+            SHOWNOT(true)
         setShowktraButton(false);
         let correct_option0 = allQuestions[0]['correct_option'];
         let correct_option1 = allQuestions[1]['correct_option'];
@@ -227,7 +231,7 @@ const TracnghiemSecondPronuciationUnit1 = ({navigation}) => {
                 marginVertical: 10
             }}>
                 <Text> Choose the word which is stressed differently from the rest.</Text>
-                <Image source={require('../Assets/Images/SCR2.png')} style={{resizeMode:'center'}}>
+                <Image source={require('../Assets/Images/SCR2.png')} style={{width:'100%', height:63, marginTop:10}}>
                 </Image>
             </View>
         )
@@ -449,6 +453,7 @@ const TracnghiemSecondPronuciationUnit1 = ({navigation}) => {
                     }
                 </View>
                 <View style={{width:'100%',alignItems:'center', justifyContent:'center'}}>
+                    {renderNote()}
                 {buttonKtra()}
                 </View>
                 </ScrollView>
@@ -479,7 +484,26 @@ const TracnghiemSecondPronuciationUnit1 = ({navigation}) => {
             return null
         }
     }
-
+    const renderNote =() =>{
+        if(NOTE)
+        {
+        return (
+            note.map((a) =>(
+                <View style={{width:'100%', margin:10, backgroundColor:'pink', padding:10, borderRadius:20}}>
+                     <Text style={{fontSize:20}}>{a.index} <Text style={{fontWeight:'bold'}}> Đáp án : {a.Dapan}</Text></Text>
+                     <Text style={{fontSize:15}}> Giải thích</Text>
+                     <View>
+                    {
+                    a.Note.map(Note=>(
+                        <Text>{Note}</Text>
+                    ))
+                    }
+            </View>
+                </View>
+            ))
+        )
+        }
+    }
     const [progress, setProgress] = useState(new Animated.Value(0));
     const progressAnim = progress.interpolate({
         inputRange: [0, allQuestions.length],

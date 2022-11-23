@@ -46,13 +46,13 @@ const ScreenFistVocabularyUnit1 =() => {
             <Vocabulary></Vocabulary>
     </ScrollView>
         <View style={{
-               
             height:'15%',      
             alignItems:'center',
             justifyContent:'center',
 
         }}>
             <TouchableOpacity 
+            touchSoundDisabled={true}
             onPress={()=> navigation.navigate("TracnghiemFirstVocabularyUnit1")}
             style={{
             backgroundColor:'pink',

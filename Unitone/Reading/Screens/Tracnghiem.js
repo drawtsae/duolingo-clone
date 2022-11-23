@@ -82,8 +82,8 @@ const ReadingUnit1 = ({navigation}) => {
         if (userData2?.TiendoUnit1 == "50%"){
             await UpdateTienDo2(auth.session?.user.id, '62.5%');
         }
-        if (userScore?.ScoreUnit1 == 0 || userScore?.ScoreUnit1 < 30){
-            await UpdateScore(auth.session?.user.id, score1);
+        if (userScore?.ScoreUnit1 < 30){
+            await UpdateScore(auth.session?.user.id,userScore?.ScoreUnit1 + score1);
         }
     }
     const allQuestions = data;

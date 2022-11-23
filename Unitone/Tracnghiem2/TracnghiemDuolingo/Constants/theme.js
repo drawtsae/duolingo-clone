@@ -1,8 +1,10 @@
 export const COLORS ={
     primary: "#252c4a",
     secondary: '#1E90FF',
+    secondary1: '#232137',
     accent: '#3498db',
-    
+    noteT :'#E4F2E2',
+    noteF: '#F6D1CA',
     success: '#00C851',
     error: '#ff4444',
 

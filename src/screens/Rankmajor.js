@@ -8,19 +8,11 @@ import Sys_modal from './Sys_modalrank';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
 // Get data Score from database 
-let array = new Array();
-let brray= new Array();
-let name ='';
 const getdata = async (userId)=> {
     let { data: ScoreOfUser, error } = await supabase
     .from('ScoreOfUser')
     .select('Name,Scoremajor1')
-    return ScoreOfUser;
-}
-const getdata2 = async (userId)=> {
-    let { data: ScoreOfUser, error } = await supabase
-    .from('ScoreOfUser')
-    .select('Scoremajor1')
+    //.eq('UserID', userId).single()
     return ScoreOfUser;
 }
 const getdata3 = async (userId)=> {
@@ -32,57 +24,45 @@ const getdata3 = async (userId)=> {
 }
 const RankScreenmajor1 = () => {
     const navigation = useNavigation();
-    const [userData, setUserData] = useState({});
-    const [userData2, setUserData2] = useState({});
+    const [userData, setUserData] = useState([]);
     const [userData3, setUserData3] = useState({});
     const auth = useContext(AuthContext);
-    const [Xephanguserdata, SetXephanguserdata] = useState({});
-    const load =()=>{
+    useEffect(()=> {
         getdata()
-        .then((data) => (setUserData(data)))
-        getdata2()
-        .then((data) => (setUserData2(data)));
+        .then((data) =>{
+            data.sort((a,b) => a.Scoremajor1 < b.Scoremajor1 ?1 :-1);
+            setUserData(data)
+        } )
+        //getdata2()
+        //.then((data) => (setUserData2(data)));
         getdata3(auth.session.user.id)
         .then((data) => (setUserData3(data)));
-        handle();
-        name = userData3?.Name;
-    }
-    const handle =() =>{
-        let A;
-        let bds = 0;
-        for (let index = 0; index < userData.length; index++) {
-            array[index] = userData2[index]?.Scoremajor1;
-            
+        //name = userData3?.Name;
+        //handle();
+        console.log("load rank screen")
+    },userData3?.Scoremajor1)
+
+    const getImage =(num) =>{
+        switch (num) {
+            case 1:
+                return require('../screens/auth/Assets/Image/Thachdau.png');
+                break;
+            case 2:
+                return require('../screens/auth/Assets/Image/AAA.png');
+                break;
+            case 3:
+                return require('../screens/auth/Assets/Image/Caothumini.png');
+                break;
+            case 4:
+                return require('../screens/auth/Assets/Image/Kimcuong.png');
+                break;
+            default:
+                return require('../screens/auth/Assets/Image/Satvun.png');
+                break;
         }
-        // Sắp xếp thứ hạng theo mảng
-        for (let index = 0; index < userData.length - 1; index++) {
-            for (let jndex = index + 1; jndex < userData.length; jndex++) {
-                if(array[index] < array[jndex])
-                {
-                    A = array[index];
-                    array[index] = array[jndex];
-                    array[jndex] = A;
-                }
-            }
-        }
-        // HANDLE
-        for (let index = 0; index < userData.length; index++) {
-            for (let jndex = 0; jndex < userData.length ; jndex++) {
-                if (array[index] == userData2[jndex]?.Scoremajor1 )
-                {
-                    for (let i = 0; i < brray.length; i++) {
-                        if (jndex == brray[i] ) {
-                            bds++;
-                        }
-                    }
-                    if (bds == 0)
-                        brray[index] = jndex;
-                }
-            } 
-        }
-    }
-  return (
-    
+    } 
+
+  return (  
     <View style = {{flex:1}}>
         
         <View style={{flex:2, alignItems:'center', justifyContent:'flex-end', paddingHorizontal:20}}>
@@ -92,7 +72,7 @@ const RankScreenmajor1 = () => {
                 <TouchableOpacity style={{padding:5, backgroundColor:'#E6E7E9', width:45, borderRadius:10}} onPress={() => navigation.goBack()}>
                             <Icon name='backward' size={30}></Icon>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={load}>
+                <TouchableOpacity >
                     <Image source={require('../screens/auth/Assets/Icon/sync.png')} style={{height:30, width:30}}></Image>
                 </TouchableOpacity>
             </View>
@@ -116,48 +96,16 @@ const RankScreenmajor1 = () => {
         <View style={{flex:5 , alignItems:'center'}}>
             <ScrollView>
             <View style={{flex:1 , alignItems:'center', padding:20}}>
-                <ListS
-                img={require('../screens/auth/Assets/Image/Thachdau.png')}
-                rank='1'
-                bg={name==userData[brray[0]]?.Name ? "#F4F4D6" : null}
-                score={userData[brray[0]]?.Scoremajor1}
-                title={userData[brray[0]]?.Name}
-                />
-                <ListS
-                img={require('../screens/auth/Assets/Image/AAA.png')}
-                bg={name==userData[brray[1]]?.Name ? "#F4F4D6" : null}
-                rank='2'
-                score={userData[brray[1]]?.Scoremajor1}
-                title={userData[brray[1]]?.Name}
-                />
-                <ListS
-                img={require('../screens/auth/Assets/Image/Caothumini.png')}
-                rank='3'
-                bg={name==userData[brray[2]]?.Name ? "#F4F4D6" : null}
-                score={userData[brray[2]]?.Scoremajor1}
-                title={userData[brray[2]]?.Name}
-                />
-                <ListS
-                img={require('../screens/auth/Assets/Image/Kimcuong.png')}
-                rank='4'
-                bg={name==userData[brray[3]]?.Name ? "#F4F4D6" : null}
-                score={userData[brray[3]]?.Scoremajor1}
-                title={userData[brray[3]]?.Name}
-                />
-                <ListS
-                img={require('../screens/auth/Assets/Image/Satvun.png')}
-                rank='5'
-                bg={name==userData[brray[4]]?.Name ? "#F4F4D6" : null}
-                score={userData[brray[4]]?.Scoremajor1}
-                title={userData[brray[4]]?.Name}
-                />
-                <ListS
-                img={require('../screens/auth/Assets/Image/Satvun.png')}
-                rank='6'
-                bg={name==userData[brray[5]]?.Name ? "#F4F4D6" : null}
-                score={userData[brray[5]]?.Scoremajor1}
-                title={userData[brray[5]]?.Name}
-                />
+              {userData.map((value,index) => 
+              <ListS
+              key={index}
+              img={getImage(index + 1)}
+              rank={index + 1}
+              bg={userData3.Name==value?.Name ? "#F4F4D6" : null}
+              score={value?.Scoremajor1}
+                title={value?.Name}
+              />)}
+
             </View>
             </ScrollView>
         </View>

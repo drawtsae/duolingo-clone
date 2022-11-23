@@ -12,6 +12,8 @@ import RankScreenmajor1 from "../screens/Rankmajor";
 import ScreenMainChuyende1 from "../../Chuyende/Chuyende1/Index";
 import ScreenChuyende1 from "../../Chuyende/Chuyende1/Chuyende1";
 import Tracnghiemchuyende1 from "../../Chuyende/Chuyende1/Tracnghiem";
+//dethi
+import Tracnghiemdethi1 from "../../DethiTHPT/Dethi1/Tracnghiem";
 // List Unit
 import ScreenMainUnit1 from "../../Newfolder/screens/Unit1"; // Unit 1
 import { MainStackParamList } from "../types/navigation";
@@ -48,6 +50,7 @@ const Main = () => {
       <MainStack.Screen name="RankScreen" component={RankScreen} />
       <MainStack.Screen name="ScreenMainUnit1" component={ScreenMainUnit1} />
       <MainStack.Screen name="RankScreenmajor1" component={RankScreenmajor1} />
+      <MainStack.Screen name="Tracnghiemdethi1" component={Tracnghiemdethi1} />
       <MainStack.Screen name="ScreenFistVocabularyUnit1" component={ScreenFistVocabularyUnit1} />
       <MainStack.Screen name="TracnghiemFirstVocabularyUnit1" component={TracnghiemFirstVocabularyUnit1} />
       <MainStack.Screen name="TracnghiemSecondVocabularyUnit1" component={TracnghiemSecondVocabularyUnit1} />

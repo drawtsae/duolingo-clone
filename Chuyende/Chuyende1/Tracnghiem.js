@@ -8,6 +8,14 @@ import { supabase } from '../../src/initSupabase';
 import { AuthContext} from '../../src/provider/AuthProvider';
 var ABRRAY =new Array();
 var BRRAY = new Array();
+const getdata = async (userId)=> {
+    let { data: ScoreOfUser, error } = await supabase
+    .from('ScoreOfUser')
+    .select('*')
+    .eq('UserID', userId).single()
+    console.log(ScoreOfUser)
+    return ScoreOfUser;
+    }
 const UpdateScore = async (userId, value)=> {
     const { data, error } = await supabase
     .from('ScoreOfUser')
@@ -20,16 +28,8 @@ const Tracnghiemchuyende1 = ({navigation}) => {
     const [userData, setUserData] = useState({})
     const auth = useContext(AuthContext);
     //useEffect
-    useEffect(() => {
-        getdata(auth.session?.user.id)
-        .then((data) => setUserData(data));
-    },);
-    //Update
     const update = async() =>{
-        //update vocabulary
-        if (userData?.Scoremajor1 == 0){
-            await UpdateScore(auth.session?.user.id, score);
-        };
+        await UpdateScore(auth.session?.user.id, score);
     }
     var ARRAY = new Array();
     const allQuestions = data;
@@ -58,7 +58,6 @@ const Tracnghiemchuyende1 = ({navigation}) => {
     //Show đáp án đã chon
     const Showdapan =()=>{
         let A=0;
-        console.log(BRRAY)
         return (
             allQuestions.map((a) =>(
                 <View style={{width:'100%', margin:10}}>
@@ -83,10 +82,9 @@ const Tracnghiemchuyende1 = ({navigation}) => {
                         </TouchableOpacity>
                         <Text style={{fontSize: 20, color: 'black', marginLeft:25}} >{option} 
                             <Text style={{textDecorationLine:'underline'}}>
-                                {a?.options1} {ARRAY[A]} 
+                                {a?.options1} 
                             </Text>
-                        </Text>
-                        
+                        </Text>   
                         </View>
                     ))
                     }
@@ -101,7 +99,7 @@ const Tracnghiemchuyende1 = ({navigation}) => {
             // Last Question
             // Show Score Modal
             setShowScoreModal(true)
-            let A = 1;
+            let A = 0;
             for (let index = 0; index < allQuestions.length; index++) {
                 if(BRRAY[index] == ARRAY[index])
                 {

@@ -20,6 +20,7 @@ export type MainStackParamList = {
 	Account:undefined;
 	ScreenMainChuyende1:undefined;
 	RankScreenmajor1:undefined;
+	Tracnghiemdethi1:undefined;
 };
 
 export type AuthStackParamList = {

@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect }  from 'react';
 import { View, Text,  TouchableOpacity, Modal, Animated, ScrollView, Image} from 'react-native';
 import { COLORS} from '../Constants/theme';
 import data from '../Data/Data2';
+import datanote from '../Data/Datanote2'
 import Icon from 'react-native-vector-icons/FontAwesome';
 // import Supabase and data user
 import { supabase } from '../../../../src/initSupabase';
@@ -82,10 +83,11 @@ const TracnghiemFirstPronuciationUnit1 = ({navigation}) => {
         if (userData2?.TiendoUnit1 == "25%"){
             await UpdateTienDo2(auth.session?.user.id, '33.3%');
         }
-        if (userScore?.ScoreUnit1 == 0 || userScore?.ScoreUnit1 < 15){
+        if (userScore?.ScoreUnit1 < 15){
             await UpdateScore(auth.session?.user.id,userScore?.ScoreUnit1 + score1);
         }
     }
+    const note = datanote;
     const allQuestions = data;
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
     const [currentOptionSelected, setCurrentOptionSelected] = useState(null);
@@ -95,6 +97,7 @@ const TracnghiemFirstPronuciationUnit1 = ({navigation}) => {
     const [showktraButton, setShowktraButton] = useState(true)
     const [showNextButtonErrow, setShowNextButtonErrow] = useState(false)
     const [showScoreModal, setShowScoreModal] = useState(false)
+    const [NOTE , SHOWNOT] = useState(false)
     //Handle
     const [score1, setScore1] = useState(0)
     const [bug,Setbug] = useState(true);
@@ -126,6 +129,7 @@ const TracnghiemFirstPronuciationUnit1 = ({navigation}) => {
                 <Text style={{color:'white', fontSize:20}}>Nộp</Text>
             </TouchableOpacity>
             </View>
+        
         )
         }
         else return (
@@ -142,6 +146,7 @@ const TracnghiemFirstPronuciationUnit1 = ({navigation}) => {
     {
         if (bug)
         {
+        SHOWNOT(true)
         setShowktraButton(false);
         let correct_option0 = allQuestions[0]['correct_option'];
         let correct_option1 = allQuestions[1]['correct_option'];
@@ -227,7 +232,7 @@ const TracnghiemFirstPronuciationUnit1 = ({navigation}) => {
                 marginVertical: 10
             }}>
                 <Text style ={{fontSize:18}}>Choose the word which has the underlined part pronounced differently from the rest.</Text>
-                <Image source={require('../Assets/Images/SCR.png')} style={{resizeMode:'center'}}>
+                <Image source={require('../Assets/Images/abc.png')} style={{marginTop:15, width:'100%', height:85}}>
                 </Image>
             </View>
         )
@@ -449,6 +454,7 @@ const TracnghiemFirstPronuciationUnit1 = ({navigation}) => {
                     }
                 </View>
                 <View style={{width:'100%',alignItems:'center', justifyContent:'center'}}>
+                {renderNote()}
                 {buttonKtra()}
                 </View>
                 </ScrollView>
@@ -477,6 +483,26 @@ const TracnghiemFirstPronuciationUnit1 = ({navigation}) => {
             )
             }else{
             return null
+        }
+    }
+    const renderNote =() =>{
+        if(NOTE)
+        {
+        return (
+            note.map((a) =>(
+                <View style={{width:'100%', margin:10, backgroundColor:'pink', padding:10, borderRadius:20}}>
+                     <Text style={{fontSize:20}}>{a.index} <Text style={{fontWeight:'bold'}}> Đáp án : {a.Dapan}</Text></Text>
+                     <Text style={{fontSize:15}}> Giải thích</Text>
+                     <View>
+                    {
+                    a.Note.map(Note=>(
+                        <Text>{Note}</Text>
+                    ))
+                    }
+            </View>
+                </View>
+            ))
+        )
         }
     }
 

@@ -28,7 +28,7 @@ const ScreenMainUnit1 =() =>{
     useEffect(() => {
         getdata(auth.session?.user.id)
         .then((data) => setUserData(data));
-    });
+    },auth.session?.user.id);
     //useEffect( async () => {
     //    await UpdateTienDo(auth.session?.user.id, 10)
     //}, auth.session?.user.id);

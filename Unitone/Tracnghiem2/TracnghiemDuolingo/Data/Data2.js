@@ -1,5 +1,6 @@
 const data =[
     {
+        question:[""],
         id : 0,
         options: ['A','B','C','D'],
         correct_option:'C',

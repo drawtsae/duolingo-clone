@@ -1,9 +1,11 @@
-import { View, Text , ImageBackground, Image, TouchableOpacity } from 'react-native'
+import { View, Text , ImageBackground, Image, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
 import React from 'react';
 import  Icon  from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from '@react-navigation/native';
+
+import { loadAsync } from 'expo-font';
 const ScreenHome = () => {
-    const navigation = useNavigation();
+    const navigation = useNavigation;
   return (
     <ImageBackground source={require('../Assets/Image/Background.jpg')} style={{flex:1}}>
         <View style={{flex:2, justifyContent:'flex-end',alignItems:'center', opacity:0.8}}>
@@ -64,7 +66,9 @@ const ScreenHome = () => {
             </View>
         </View>
         <View style={{flex:2, justifyContent:'center', alignItems:'center'}}>
-            <TouchableOpacity onPress={()=> navigation.navigate('Cources')}
+            <TouchableOpacity 
+            
+            onPress={()=> {playaudio()}}
             style={{height:80,width:80, backgroundColor:'pink'+'60', borderRadius:30, justifyContent:'center', alignItems:'center'}
             }>
             <Icon name="chevron-right" size={30}></Icon>
